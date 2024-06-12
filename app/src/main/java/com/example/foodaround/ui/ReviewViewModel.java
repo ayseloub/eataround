@@ -32,6 +32,10 @@ public class ReviewViewModel extends AndroidViewModel {
     public void delete(String reviewId) {
         repository.delete(reviewId);
     }
+
+    public void update(Review review) {
+        repository.update(review);
+    }
 }
 
 

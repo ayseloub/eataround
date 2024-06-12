@@ -22,6 +22,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     public interface OnItemClickListener {
         void onItemClick(Review review);
         void onDeleteClick(String reviewId);
+        void onEditClick(Review review);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -53,6 +54,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
                 listener.onDeleteClick(review.getId());
             }
         });
+        holder.tvEdit.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEditClick(review);
+            }
+        });
     }
 
     @Override
@@ -71,6 +77,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         private TextView tvNamaresto;
         private TextView tvReview;
         private TextView tvDelete;
+        private TextView tvEdit;
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,10 +86,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             tvNamaresto = itemView.findViewById(R.id.tv_namaresto);
             tvReview = itemView.findViewById(R.id.tv_review);
             tvDelete = itemView.findViewById(R.id.tv_delete);
+            tvEdit = itemView.findViewById(R.id.tv_edit);
         }
     }
 }
-
 
 
 

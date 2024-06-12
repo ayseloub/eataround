@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +37,8 @@ public class HomepageFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
+
+        ((MainActivity) getActivity()).hideHeader();
 
         this.data = new ArrayList<>();
 
@@ -81,10 +85,28 @@ public class HomepageFragment extends Fragment {
 
         this.rvSuggestedResto = view.findViewById(R.id.rvSuggestedResto);
         SuggestedRestaurantAdapter suggestedRestaurantAdapter = new SuggestedRestaurantAdapter(getActivity(), data2);
+
+        suggestedRestaurantAdapter.setOnItemClickListener(new SuggestedRestaurantAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(SuggestedRestaurant suggestedRestaurant) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ReviewFragment());
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
         RecyclerView.LayoutManager lm2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         this.rvSuggestedResto.setLayoutManager(lm2);
         this.rvSuggestedResto.setAdapter(suggestedRestaurantAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((MainActivity) getActivity()).showHeader();
     }
 }

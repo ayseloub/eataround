@@ -33,6 +33,7 @@ public class ReviewFragment extends Fragment {
 
     private ReviewViewModel reviewViewModel;
     private ReviewAdapter reviewAdapter;
+    private Review currentReview;  // To keep track of the review being edited
 
     @Nullable
     @Override
@@ -62,8 +63,19 @@ public class ReviewFragment extends Fragment {
             String reviewText = etReview.getText().toString().trim();
 
             if (!nama.isEmpty() && !alamat.isEmpty() && !namaresto.isEmpty() && !reviewText.isEmpty()) {
-                Review review = new Review(null, nama, alamat, namaresto, reviewText);
-                reviewViewModel.insert(review);
+                if (currentReview == null) {
+                    // Adding new review
+                    Review review = new Review(null, nama, alamat, namaresto, reviewText);
+                    reviewViewModel.insert(review);
+                } else {
+                    // Editing existing review
+                    currentReview.setNama(nama);
+                    currentReview.setAlamat(alamat);
+                    currentReview.setNamaresto(namaresto);
+                    currentReview.setReview(reviewText);
+                    reviewViewModel.update(currentReview);
+                    currentReview = null;  // Reset after editing
+                }
                 clearData();
             }
         });
@@ -86,6 +98,15 @@ public class ReviewFragment extends Fragment {
             public void onDeleteClick(String reviewId) {
                 reviewViewModel.delete(reviewId);
             }
+
+            @Override
+            public void onEditClick(Review review) {
+                currentReview = review;
+                etNama.setText(review.getNama());
+                etAlamat.setText(review.getAlamat());
+                etNamaresto.setText(review.getNamaresto());
+                etReview.setText(review.getReview());
+            }
         });
 
         reviewViewModel.getAllReviews().observe(getViewLifecycleOwner(), new Observer<List<Review>>() {
@@ -103,5 +124,6 @@ public class ReviewFragment extends Fragment {
         etAlamat.setText("");
         etNamaresto.setText("");
         etReview.setText("");
+        currentReview = null;  // Reset currentReview when clearing data
     }
 }

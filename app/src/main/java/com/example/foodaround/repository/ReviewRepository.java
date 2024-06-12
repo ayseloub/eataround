@@ -34,6 +34,10 @@ public class ReviewRepository {
         databaseReference.child(reviewId).removeValue();
     }
 
+    public void update(Review review) {
+        databaseReference.child(review.getId()).setValue(review);
+    }
+
     public LiveData<List<Review>> getAllReviews() {
         MutableLiveData<List<Review>> reviewsLiveData = new MutableLiveData<>();
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -54,4 +58,3 @@ public class ReviewRepository {
         return reviewsLiveData;
     }
 }
-

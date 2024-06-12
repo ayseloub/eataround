@@ -8,19 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.widget.ResourceManagerInternal;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class SuggestedRestaurantAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SuggestedRestaurantAdapter extends RecyclerView.Adapter<SuggestedRestaurantAdapter.VH> {
     private final Context context;
     private final List<SuggestedRestaurant> filterHeaders;
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(SuggestedRestaurant suggestedRestaurant);
+    }
 
     public SuggestedRestaurantAdapter(Context context, List<SuggestedRestaurant> filterHeaders) {
         this.context = context;
         this.filterHeaders = filterHeaders;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     public class VH extends RecyclerView.ViewHolder {
@@ -33,24 +40,33 @@ public class SuggestedRestaurantAdapter extends RecyclerView.Adapter<RecyclerVie
             tvnama = itemView.findViewById(R.id.tvnama);
             tvdeskripsi = itemView.findViewById(R.id.tvdeskripsi);
             ivresto = itemView.findViewById(R.id.ivresto);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onItemClick(filterHeaders.get(position));
+                    }
+                }
+            });
         }
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vh = LayoutInflater.from(context)
-                .inflate(R.layout.activity_suggested_restaurant, parent, false);
+                .inflate(R.layout.activity_suggested_restaurant, parent, false); // Changed layout name
         return new VH(vh);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VH holder, int position) {
         SuggestedRestaurant SG = filterHeaders.get(position);
-        VH vh = (VH) holder;
-        vh.tvnama.setText(SG.nama.toString());
-        vh.tvdeskripsi.setText(SG.Deskripsi.toString());
-        vh.ivresto.setImageResource(SG.gambar);
+        holder.tvnama.setText(SG.nama.toString());
+        holder.tvdeskripsi.setText(SG.Deskripsi.toString());
+        holder.ivresto.setImageResource(SG.gambar);
     }
 
     @Override
@@ -58,4 +74,3 @@ public class SuggestedRestaurantAdapter extends RecyclerView.Adapter<RecyclerVie
         return filterHeaders.size();
     }
 }
-
