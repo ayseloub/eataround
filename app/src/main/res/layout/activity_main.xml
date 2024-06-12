@@ -84,38 +84,39 @@
         <!-- Tombol Home -->
         <ImageButton
             android:id="@+id/btn_home"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@null"
-            android:scaleType="fitCenter"
             android:src="@drawable/home" />
 
         <!-- Tombol Notif -->
         <ImageButton
             android:id="@+id/btn_notif"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@null"
-            android:scaleType="fitCenter"
             android:src="@drawable/notif" />
 
         <!-- Tombol Cam -->
         <ImageButton
             android:id="@+id/btn_cam"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
             android:background="@null"
-            android:scaleType="fitCenter"
             android:src="@drawable/cam" />
 
         <!-- Tombol Bookmark -->
         <ImageButton
             android:id="@+id/btn_bookmark"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@null"
             android:scaleType="fitCenter"
@@ -124,8 +125,9 @@
         <!-- Tombol Profile -->
         <ImageButton
             android:id="@+id/btn_profile"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:background="@null"
             android:scaleType="fitCenter"
