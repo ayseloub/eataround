@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62509397533",
+    "project_id": "projecteatarround-69cbe",
+    "storage_bucket": "projecteatarround-69cbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62509397533:android:7fd251310ab8516f5278f4",
+        "android_client_info": {
+          "package_name": "com.example.foodaround"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCN2AQPp9d5r6xx6WTnMdSW0aG7drAnlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
