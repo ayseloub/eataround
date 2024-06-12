@@ -44,6 +44,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Handle button click event
+        ImageButton btnBookmark = findViewById(R.id.btn_bookmark);
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                // Begin FragmentTransaction
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new FavoritFragment());
+                // Add transaction to the back stack
+                fragmentTransaction.addToBackStack(null);
+                // Commit the transaction
+                fragmentTransaction.commit();
+            }
+        });
+
     }
 }
 

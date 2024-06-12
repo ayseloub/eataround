@@ -16,9 +16,6 @@
         android:theme="@style/Theme.FoodAround"
         tools:targetApi="31">
         <activity
-            android:name=".Favorite"
-            android:exported="false" />
-        <activity
             android:name=".SuggestedRestaurant"
             android:exported="false" />
         <activity
@@ -46,6 +43,11 @@
 
         <activity
             android:name=".ui.DetailReviewActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ui.FavoritFragment"
             android:exported="true">
         </activity>
 
