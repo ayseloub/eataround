@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< Updated upstream
         // Handle button click event
         ImageButton btnBookmark = findViewById(R.id.btn_bookmark);
         btnBookmark.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +57,16 @@ public class MainActivity extends AppCompatActivity {
                 // Add transaction to the back stack
                 fragmentTransaction.addToBackStack(null);
                 // Commit the transaction
+=======
+        ImageButton btnProfil = findViewById(R.id.btn_profile);
+        btnProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ProfilFragment());
+                fragmentTransaction.addToBackStack(null);
+>>>>>>> Stashed changes
                 fragmentTransaction.commit();
             }
         });

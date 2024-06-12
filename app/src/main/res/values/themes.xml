@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FoodAround" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.FoodAround" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">#FF9505</item>
+        <item name="colorAccent">@color/love</item>
     </style>
 
     <style name="Theme.FoodAround" parent="Base.Theme.FoodAround" />
